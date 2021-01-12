@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="title" content="Database title">
+    <meta name="description" content="Protein-Drug Interaction Database - web server from Biomine lab">
+    <meta name="author" content="Chen Wang, Gang Hu, Kui Wang, Michal Brylinski, Lei Xie, Lukasz Kurgan">
+    <meta name="keywords" content="Lukasz Kurgan, Virginia Commonwealth University, Richmond, Bioinformatics, Computational Biology, Proteomics, Genomics, Intrinsic Disorder, Genome, Proteome, Structural Protein-Drug Interactions, Protein-Ligand, Structure, Protein, RNA, miRNA">
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../assets/css/custom.min.css">
+    <link rel="stylesheet" href="../biomine.css">
+    <link rel="stylesheet" href="./pdid.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+    
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./feature-viewer.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="./fetview1.js"></script>
+	<script src="./dom-to-image.min.js"></script>
+	<script src="./FileSaver.min.js"></script>
+    </head>
+
+  <body>
+
+  <style>
+  h1,
+	h2,
+	h3 {
+	  /*font-weight: 700;*/
+	  color: #444444;
+	  padding-bottom: 2px;
+	  margin-top: 16px;
+	  margin-bottom: 16px;
+	}
+	h1 {
+	  /*font-variant: small-caps;*/
+	  font-size: 20px;
+	  text-align: center;
+	  padding: 8px 0;
+	  line-height: 1.25;
+	  /*border-top: 2px solid #ffd700;*/
+	  /*border-bottom: 2px solid #ffd700;*/
+	  /*background-color: #ffd700;*/
+	  background-color: rgba(255, 215, 0, 0.4);
+	  /*background-color: #ffef99;*/
+	}
+    .acronym {
+  		font-weight: 700;
+	}
+	p.menu {
+	  text-align: center;
+	}
+	h2 {
+	  font-size: 16px;
+	  border-bottom: 1px solid #ffd700;
+	}
+
+	h3 {
+	  font-size: 14px;
+	  font-weight: 700;
+	  text-align: center;
+	  margin-bottom: 8px;
+	  border-bottom: 1px solid #d7d7d7;
+	}
+	
+
+
+  </style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <h1><span class="acronym">DESCRIPROT</span>-<span class="acronym">D</span>atabase of prot<span class="acronym">E</span>in re<span class="acronym">S</span>idue level stru<span class="acronym">C</span>ture funct<span class="acronym">I</span>on <span class="acronym">PR</span>edicted ann<span class="acronym">OT</span>tations
+      </h1>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h style="font-size: 20px;">
+        <a href="https://www.uniprot.org/uniprot/P22362" target="_blank">P22362</a>
+        <b>C-C motif chemokine 1</b> 
+        <a href="C:\Users\zhaob4\Desktop\human_prediction_output/P22362_result.txt" target="_blank">
+          <span style="font-size: 18px" class="glyphicon glyphicon-download-alt"></span>
+        </a>
+      </h>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h2 id="secondtitle">
+        <b style="font-size:16px">Protein Level Characterization</b>
+      </h2>
+    </div>
+  </div>
+</div>
+
+<style>
+div.Cselectt2,div.Cselectt3,div.Cselectt4,div.Cselectt1,div.Cselectt6,div.Cselectt7,div.Cselectt8,div.Cselectt9,div.Cselectt5{
+    margin-top: 20px;
+    margin-bottom: 2px;
+    margin-right: 10px;
+    margin-left: 10px;
+	}
+</style>
+
+
+
+          <style>
+              table, th, td { 
+                              border-collapse: collapse;font-size:13px;
+                            }
+             th, td {
+                padding: 0px; text-align:left;
+              }
+             th#t1, td#t1{
+              padding: 10px;
+             }
+               table#t1{width: 100%;outline-color:#bfb4b45b;background-color:#b4b4b418;}
+               table#t2{width: 100%;outline-color:#b9d1a25b;}
+               table#t3{width: 100%;outline-color:#668cff5b;}
+               table#t4{width: 100%;outline-color:#ff80ff5b;}
+               table#t5{width: 100%;outline-color:#ffff805b;}
+               table#t6{width: 100%;outline-color:#ffbf805b;}
+               table#t7{width: 100%;outline-color:#ffbf805b;}
+               table#t8{width: 100%;outline-color:#ffbf805b;}
+               table#t9{width: 100%;outline-color:#ffbf805b;}
+               table#t10{width: 100%;outline-color:#ffbf805b;}
+          </style>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+                <table id="t1" style="font-size:14px;">
+                  <tr>
+                    <td style="width: 50%;"><b>Protein Name</b></td>
+                    <td style="text-align: right"><a href="https://www.uniprot.org/uniprot/P22362" target="_blank">C-C motif chemokine 1</td>
+                  </tr>
+                  <tr>
+                    <td><b>UniProt ID</b></td>
+                    <td style="text-align: right" class="numeric"><a href="https://www.uniprot.org/uniprot/P22362" target="_blank">P22362</td>
+                  </tr>
+                  <tr>
+                    <td><b>Taxonomy ID</b></td>
+                    <td style="text-align: right" class="numeric">9606</td>
+                  </tr>
+                  <tr>
+                    <td><b>Sequence Length</b></td>
+                    <td style="text-align: right" class="r bottem">96</td>
+                  </tr>
+              </table>
+            </div>
+          
+            
+            <div class="col-lg-8 col-lg-offset-2">
+              <p style="margin-top: 5px;margin-bottom: 2px"><b>Putative Structure</b></p>
+            </div>  
+            <form method="post" action="/Tests/Post">
+            <div class="col-lg-8 col-lg-offset-2">  
+              <table style="background-color:#75fd635b;width:100%">
+              <td style="width: 50%;"><b>Percentage of disordered residues</b></td>
+              <td style="width: 10%;text-align:right;">1%</td>
+              <td style="text-align:right;font-size:10px">click here for details<input class="disorder_prediction" type="checkbox" name="disorder_prediction" value="Disorder" onchange="valueChanged()"/></td>
+              </table>
+              
+            <div class="col-lg-11" id="ta6" style="display:none">
+                <p style="text-align:justify;margin-bottom: 2px">The disordered residues were predicted by VSL2.</p>
+            </div> 
+            </form>
+            </div>
+            <script>
+             
+             var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+             
+             var ft5 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+             '#ta6', 
+                                            {
+                                             showAxis: true,
+                                             showSequence: true,
+                                             brushActive: true, 
+                                             toolbar:false,
+                                             bubbleHelp:false, 
+                                             animation :true,
+                                             zoomMax:50,
+                                             offset:{start:0,end:sequence.length}                
+                                         });
+             var cordinates4 = [];
+             var xCordes = [92]
+             var yCordes = [92]
+             
+             for (var i=0;i<yCordes.length;i++) {
+                 cordinates4.push({
+                     x:xCordes[i],
+                     y:yCordes[i],
+                 description:"VSL2B",
+                 id:"c1",
+                 color:"#75fd63"
+                 })
+             }             
+                                                   
+             ft5.addFeature({
+                 data: cordinates4,
+                 name: "Disordered\nResidues",
+                 className: "test5", //can be used for styling
+                 color: "#75fd63",
+                 type: "rect" // ['rect', 'path', 'line']
+             });
+             
+             var dataDemo4 = [];
+             var score4 = [0.6, 0.5, 0.43, 0.28, 0.17, 0.1, 0.06, 0.04, 0.03, 0.02, 0.03, 0.03, 0.04, 0.05, 0.07, 0.13, 0.2, 0.3, 0.39, 0.51, 0.56, 0.6, 0.63, 0.61, 0.54, 0.49, 0.44, 0.34, 0.27, 0.22, 0.19, 0.15, 0.11, 0.11, 0.11, 0.13, 0.16, 0.18, 0.19, 0.21, 0.19, 0.17, 0.17, 0.16, 0.14, 0.13, 0.12, 0.13, 0.13, 0.14, 0.16, 0.2, 0.24, 0.26, 0.26, 0.28, 0.29, 0.29, 0.28, 0.27, 0.24, 0.23, 0.24, 0.23, 0.26, 0.28, 0.29, 0.28, 0.29, 0.3, 0.28, 0.26, 0.23, 0.2, 0.18, 0.17, 0.17, 0.19, 0.21, 0.23, 0.31, 0.31, 0.34, 0.38, 0.39, 0.41, 0.47, 0.53, 0.58, 0.64, 0.7, 0.73, 0.72, 0.68, 0.66, 0.69]
+             for (var i=0;i<score4.length;i++) {
+                 dataDemo4.push({
+                     x: i*1,
+                     y:score4[i]
+                 })
+             }
+             ft5.addFeature({
+                 data:dataDemo4 ,
+                 name: "Disorder Score",
+                 className: "test6",
+                 color: "#75fd63",
+                 type: "line",
+                 filter: "type3",
+                 height: "5"
+             });
+             </script>
+
+        <form method="post" action="/Tests/Post"> 
+         <div class="col-lg-8 col-lg-offset-2">
+            <table style="background-color:#ffd1df5b;width:100%">
+              <tr>
+              <td style="width: 50%;"><b>Percentage of buried residues</b></td>
+              <td style="text-align:right;width: 10%" class="numeric">0%</td>
+              <td style="text-align:right;font-size:10px">click here for details<input class="solvent_accesibility" type="checkbox" name="prediction_category" value="Solvent Accesibility" onchange="valueChanged()"/></td>
+              </tr>
+            </table>
+              <div id="ta3" class="col-lg-11" style="display:none">
+                <p style="text-align: justify;margin-bottom: 2px">The buried residues were predicted by ASAquick.</p>
+             </div>
+             </form>
+        </div>
+        <script>
+             var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+             var ft2 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+             '#ta3', 
+                                            {
+                                             showAxis: true,
+                                             showSequence: true,
+                                             brushActive: true, 
+                                             toolbar:false, 
+                                             bubbleHelp:false, 
+                                             animation :true,
+                                             zoomMax:50,
+                             				 offset:{start:0,end:sequence.length}
+                                         });
+
+             
+             var cordinates1 = [];
+             var xCordes = [1, 19, 24, 90, 93]
+             var yCordes = [1, 19, 24, 90, 96]
+             for (var i=1;i<yCordes.length;i++) {
+                 cordinates1.push({
+                     x:xCordes[i],
+                     y:yCordes[i],
+                 description:"ASA Quick",
+                 id:"i10",
+                 color:"#ffd1df"
+                 })
+             }             
+                                 
+             ft2.addFeature({
+                 data: cordinates1,
+                 name: "Exposed residues",
+                 className: "test2", //can be used for styling
+                 color: "#ffd1df",
+                 type: "rect" // ['rect', 'path', 'line']
+             });
+             
+             var dataDemo2 = [];
+             var score2 = [0.67, 0.5, 0.37, 0.22, 0.2, 0.2, 0.09, 0.12, 0.11, 0.08, 0.14, 0.15, 0.18, 0.21, 0.26, 0.23, 0.26, 0.35, 0.59, 0.49, 0.29, 0.48, 0.41, 0.56, 0.39, 0.3, 0.49, 0.23, 0.34, 0.21, 0.2, 0.46, 0.13, 0.13, 0.22, 0.29, 0.22, 0.3, 0.48, 0.47, 0.47, 0.23, 0.32, 0.25, 0.35, 0.1, 0.14, 0.18, 0.12, 0.2, 0.35, 0.32, 0.26, 0.31, 0.3, 0.26, 0.19, 0.37, 0.45, 0.45, 0.28, 0.15, 0.25, 0.24, 0.29, 0.14, 0.44, 0.5, 0.36, 0.5, 0.45, 0.22, 0.16, 0.23, 0.26, 0.32, 0.25, 0.24, 0.28, 0.21, 0.14, 0.42, 0.43, 0.16, 0.39, 0.48, 0.26, 0.24, 0.57, 0.5, 0.16, 0.5, 0.59, 0.58, 0.56, 0.79]
+             for (var i=0;i<sequence.length;i++) {
+                 dataDemo2.push({
+                     x: i*1,
+                     y:score2[i]
+                 })
+             }
+             
+             ft2.addFeature({
+                 data:dataDemo2 ,
+                 name: "Solvent accesibility",
+                 className: "test3",
+                 color: "#ffd1df",
+                 type: "line",
+                 filter: "type2",
+                 height: "5"
+             });
+             </script>
+
+
+          <form method="post" action="/Tests/Post"> 
+          <div class="col-lg-8 col-lg-offset-2">
+             <table style="background-color:#cf62755b;width:100%">
+              <tr>
+              <td><b style="width: 50%;">Putative secondary structure</b></td>
+              <td style="width: 20%;text-align:right;" class="r bottom">H1%  E10%  C10%</td>
+              <td style="text-align:right;font-size:10px">click here for details<input class="secondary_structure" type="checkbox" name="prediction_category" value="Secondary Structure" onchange="valueChanged()"/></td>
+              </tr>
+            </table>
+            <div id="ta4" class="col-lg-11" style="display:none">
+              <p style="text-align: justify;margin-bottom: 2px">The putative secondary structure was predicted by PSIPRED.</p>  
+              <table id="t4">
+                <tbody>   
+                  <tr>
+                    <td style="width: 50%;">Percentage of helical residues</td>
+                    <td style="text-align:right;" class="numeric">29%</td>
+                    <td style="width: 40%;"></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 50%;">Percentage of strand residues</td>
+                    <td style="text-align:right;" class="numeric">12%</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 50%;">Percentage of coil residues</td>
+                    <td style="text-align:right;" class="r bottom">59%</td>
+                  </tr>
+                </tbody>
+              </table>
+             </div>
+            </form>
+          </div>
+             <script>
+             var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+             var ft3 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+             '#ta4', 
+                                            {
+                                             showAxis: true,
+                                             showSequence: true,
+                                             brushActive: true, 
+                                             toolbar:false, 
+                                             bubbleHelp:false, 
+                                             animation :true,
+                                             zoomMax:50,
+                             				 offset:{start:0,end:sequence.length}
+                                         });
+             var cordinates2 = [];
+             
+             var xCordes = [0, 15, 51, 67, 91]
+             var yCordes = [2, 44, 61, 73, 96]
+             
+             for (var i=0;i<yCordes.length;i++) {
+                 cordinates2.push({
+                     x:xCordes[i],
+                     y:yCordes[i],
+                 description:"H",
+                 id:"a1",
+                 color:"#cf6275"
+                 })
+             }             
+                           
+             var xCordes = [3, 75]
+             var yCordes = [14, 90]
+             
+             for (var i=0;i<yCordes.length;i++) {
+                 cordinates2.push({
+                     x:xCordes[i],
+                     y:yCordes[i],
+                 description:"E",
+                 id:"b1",
+                 color:"#fffd01"
+                 })
+             }
+             
+             var xCordes = [45, 62, 74]
+             var yCordes = [50, 66, 74]
+             
+             for (var i=0;i<yCordes.length;i++) {
+                 cordinates2.push({
+                     x:xCordes[i],
+                     y:yCordes[i],
+                 description:"C",
+                 id:"c1",
+                 color:"#25a36f"
+                 })
+             }             
+                           
+                           
+                           
+             ft3.addFeature({
+                 data: cordinates2,
+                 name: "Secondary Structure",
+                 className: "test4", //can be used for styling
+                 color: "black",
+                 type: "rect" // ['rect', 'path', 'line']
+             });
+             
+
+			var dataDemot = [];
+			var scoret = [1.0, 0.4 , 0.73, 0.82, 0.9 , 0.97, 0.99, 0.99, 0.99, 1.0, 1.0,
+       0.96, 0.93, 0.81, 0.82, 0.93, 0.97, 0.87, 0.81, 0.74, 0.71, 0.84,
+       0.84, 0.87, 0.79, 0.69, 0.5 , 0.54, 0.6 , 0.59, 0.49, 0.41, 0.33,
+       0.36, 0.44, 0.45, 0.46, 0.5 , 0.58, 0.64, 0.61, 0.64, 0.64, 0.49,
+       0.57, 0.7 , 0.81, 0.82, 0.65, 0.49, 0.49, 0.8 , 0.86, 0.84, 0.86,
+       0.71, 0.66, 0.85, 0.9 , 0.82, 0.89, 0.58, 0.89, 0.95, 0.93, 0.76,
+       0.52, 0.77, 0.9 , 0.76, 0.55, 0.41, 0.35, 0.34, 0.41, 0.55, 0.66,
+       0.8 , 0.84, 0.95, 0.96, 0.98, 0.95, 0.9 , 0.95, 0.94, 0.89, 0.82,
+       0.75, 0.52, 0.95, 0.95, 0.95, 0.95, 0.95, 1.0]
+			var ss_descript=['Helix', 'Helix', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Coil', 'Coil', 'Coil', 'Coil', 'Coil', 'Coil', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Coil', 'Coil', 'Coil', 'Coil', 'Coil', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Coil', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix']
+			for (var i=0;i<sequence.length;i++) {
+			    dataDemot.push({
+			        x: i*1,
+			        y:scoret[i],
+					description:ss_descript[i]
+			    })
+			}
+
+			ft3.addFeature({
+			    data:dataDemot ,
+			    name: "Secondary struc.score",
+			    className: "test3",
+			    color: "black",
+			    type: "line",
+			    filter: "type3",
+			    height: "5"
+			});
+             </script>
+
+
+        <div class="col-lg-8 col-lg-offset-2">
+            <p style="margin-top: 5px;margin-bottom: 2px"><b>Putative Interactions with Ligands</b></p>
+        </div>
+
+        <div class="col-lg-8 col-lg-offset-2">
+            <table style="background-color:#3d7afd6b;width:100%">
+              <tr>
+              <td style="width: 50%;"><b>Percentage of protein-binding residues </b></td>
+              <td style="text-align:right;width: 10%;">0%</td>
+              <td style="text-align:right;font-size:10px">click here for details<input class="protein_binding" type="checkbox" name="prediction_category" value="Protein Binding" onchange="valueChanged()"/></td>
+              </tr>
+            </table>
+             <div id="ta8" class="col-lg-11" style="display:none">
+              <p style="text-align: justify;margin-bottom: 2px">The protein-binding residues were predicted by DisoRDPbind, SCRIBER, and MoRFchibi_light.</p>
+              <table id="t8">
+                <tbody>
+                  <tr>
+                    <td style="width: 50%;">DisoRDPBind</td>
+                    <td style="text-align:right;" class="numeric">0%</td>
+                    <td style="width: 40%;"></td>
+                  </tr>
+                  <tr>
+                    <td>SCRIBER</td>
+                    <td style="text-align:right;" class="numeric">42%</td>
+                  </tr>
+                  <tr>
+                    <td>MoRFChibi</td>
+                    <td style="text-align:right;" class="r bottom">41%</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <script>
+              var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+              var ft7 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+              '#ta8', 
+                                             {
+                                              showAxis: true,
+                                              showSequence: true,
+                                              brushActive: true, 
+                                              toolbar:false, 
+                                              bubbleHelp:false, 
+                                              animation :true, 
+                                              zoomMax:50,
+                                              offset:{start:0,end:sequence.length}                
+                                          });
+              
+              var cordinates6 = [];
+              var xCordes = []
+              var yCordes = []
+              for (var i=0;i<yCordes.length;i++) {
+                  cordinates6.push({
+                      x:xCordes[i],
+                      y:yCordes[i],
+                  description:"DisoRDPbind",
+                  id:"a1",
+                  color:"#3d7afd"
+                  })
+              }             
+                            
+              var xCordes = [1, 16, 22, 24, 26, 32, 35, 39, 44, 47, 59, 68, 75, 78, 82, 85, 90, 95]
+              var yCordes = [4, 18, 22, 24, 27, 32, 35, 41, 45, 56, 60, 68, 75, 80, 83, 85, 90, 95]
+              
+              for (var i=0;i<yCordes.length;i++) {
+                  cordinates6.push({
+                      x:xCordes[i],
+                      y:yCordes[i],
+                  description:"SCRIBER",
+                  id:"b1",
+                  color:"#3b5b92"
+                  })
+              }
+              
+              var xCordes = [1, 51, 60, 73]
+              var yCordes = [3, 51, 70, 96]
+              
+              for (var i=0;i<yCordes.length;i++) {
+                  cordinates6.push({
+                      x:xCordes[i],
+                      y:yCordes[i],
+                  description:"MoRFchibi",
+                  id:"c1",
+                  color:"#01889f"
+                  })
+              }
+              
+              ft7.addFeature({
+                  data: cordinates6,
+                  name: "Prot.binding residues",
+                  className: "test9", //can be used for styling
+                  color: "#000000",
+                  type: "rect" // ['rect', 'path', 'line']  
+              });
+              
+              
+              var dataDemo6 = [];
+              var score6 = [0.3, 0.34, 0.32, 0.33, 0.28, 0.29, 0.3, 0.3, 0.31, 0.29, 0.32, 0.3, 0.3, 0.35, 0.34, 0.35, 0.35, 0.31, 0.32, 0.33, 0.38, 0.39, 0.42, 0.45, 0.47, 0.48, 0.5, 0.51, 0.53, 0.52, 0.52, 0.49, 0.49, 0.49, 0.48, 0.47, 0.47, 0.46, 0.47, 0.46, 0.47, 0.47, 0.47, 0.47, 0.49, 0.48, 0.45, 0.44, 0.43, 0.46, 0.45, 0.41, 0.39, 0.35, 0.35, 0.33, 0.3, 0.27, 0.28, 0.27, 0.27, 0.25, 0.27, 0.27, 0.27, 0.29, 0.27, 0.3, 0.3, 0.32, 0.3, 0.29, 0.3, 0.32, 0.32, 0.33, 0.33, 0.34, 0.35, 0.36, 0.33, 0.31, 0.35, 0.37, 0.35, 0.34, 0.33, 0.32, 0.33, 0.32, 0.32, 0.32, 0.3, 0.3, 0.32, 0.32]
+              for (var i=0;i<sequence.length;i++) {
+                  dataDemo6.push({
+                      x: i*1,
+                      y:score6[i]
+                  })
+              }
+              ft7.addFeature({
+                  data:dataDemo6 ,
+                  name: "DisoRDPbind score",
+                  className: "test10",
+                  color: "#3d7afd",
+                  type: "line",
+                  filter: "type2",
+                  height: "5"
+              });
+              
+              
+              var dataDemo7 = [];
+              var score7 = [0.37, 0.34, 0.2, 0.19, 0.19, 0.18, 0.14, 0.19, 0.18, 0.15, 0.21, 0.21, 0.22, 0.19, 0.19, 0.23, 0.28, 0.23, 0.22, 0.2, 0.2, 0.23, 0.18, 0.23, 0.21, 0.24, 0.28, 0.19, 0.18, 0.17, 0.14, 0.32, 0.11, 0.11, 0.24, 0.17, 0.18, 0.18, 0.31, 0.32, 0.29, 0.19, 0.19, 0.24, 0.38, 0.2, 0.28, 0.36, 0.27, 0.33, 0.51, 0.47, 0.33, 0.27, 0.35, 0.39, 0.16, 0.2, 0.28, 0.26, 0.13, 0.17, 0.16, 0.17, 0.15, 0.12, 0.14, 0.27, 0.11, 0.14, 0.18, 0.15, 0.14, 0.17, 0.25, 0.2, 0.2, 0.3, 0.26, 0.37, 0.17, 0.25, 0.3, 0.21, 0.24, 0.19, 0.19, 0.14, 0.21, 0.25, 0.14, 0.21, 0.18, 0.19, 0.26, 0.2]
+              for (var i=0;i<sequence.length;i++) {
+                  dataDemo7.push({
+                      x: i*1,
+                      y:score7[i]
+                  })
+              }
+              ft7.addFeature({
+                  data:dataDemo7 ,
+                  name: "SCRIBER score",
+                  className: "test11",
+                  color: "#3b5b92",
+                  type: "line",
+                  filter: "type2",
+                  height: "5"
+              });
+              
+              var dataDemo8 = [];
+              var score8 = [0.73, 0.72, 0.71, 0.7, 0.69, 0.68, 0.67, 0.67, 0.66, 0.65, 0.64, 0.64, 0.64, 0.65, 0.65, 0.65, 0.66, 0.66, 0.66, 0.58, 0.49, 0.41, 0.41, 0.43, 0.44, 0.5, 0.64, 0.68, 0.67, 0.67, 0.67, 0.66, 0.65, 0.64, 0.64, 0.64, 0.64, 0.64, 0.64, 0.65, 0.66, 0.66, 0.67, 0.67, 0.68, 0.68, 0.69, 0.69, 0.7, 0.7, 0.71, 0.68, 0.69, 0.64, 0.64, 0.64, 0.63, 0.64, 0.69, 0.73, 0.74, 0.77, 0.77, 0.77, 0.77, 0.77, 0.77, 0.78, 0.74, 0.71, 0.7, 0.67, 0.72, 0.72, 0.74, 0.75, 0.76, 0.76, 0.76, 0.77, 0.77, 0.77, 0.78, 0.78, 0.79, 0.79, 0.79, 0.8, 0.81, 0.81, 0.81, 0.82, 0.83, 0.82, 0.81, 0.8]
+              for (var i=0;i<sequence.length;i++) {
+                  dataDemo8.push({
+                      x: i*1,
+                      y:score8[i]
+                  })
+              }
+              ft7.addFeature({
+                  data:dataDemo8 ,
+                  name: "MoRFchibi score",
+                  className: "test12",
+                  color: "#01889f",
+                  type: "line",
+                  filter: "type2",
+                  height: "5"
+              });
+              </script>
+
+            <table style="background-color:#c071fe5b;width:100%">
+              <tr>
+              <td style="width: 50%;"><b>Percentage of DNA-binding reisudes </b></td>
+              <td style="text-align:right;width: 10%;">0%</td>
+              <td style="text-align:right;font-size:10px">click here for details<input class="DNA" type="checkbox" name="prediction_category" value="DNA Binding" onchange="valueChanged()"/></td>
+              </tr>
+            </table>
+              <div id="ta9" class="col-lg-11" style="display:none">
+                <p style="text-align: justify;margin-bottom: 2px">The DNA-binding residues were predicted by DisoRDPbind and DRNApred.</p>
+              <table id="t9">
+                <tbody>
+                  <tr>
+                    <td style="width: 50%;">DisoRDPBind</td>
+                    <td style="text-align:right;" class="numeric">9%</td>
+                    <td style="width: 40%;"></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 50%;">DRNApred</td>
+                    <td style="text-align:right;" class="numeric">59%</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <script>
+              var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+              var ft8 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+              '#ta9', 
+                                             {
+                                              showAxis: true,
+                                              showSequence: true,
+                                              brushActive: true, 
+                                              toolbar:false, 
+                                              bubbleHelp:false,
+                                              animation:true,
+                                              zoomMax:50,
+                                              offset:{start:0,end:sequence.length}                
+                                          });
+              
+              var cordinates7 = [];
+              var xCordes = [88]
+              var yCordes = [96]
+              for (var i=0;i<yCordes.length;i++) {
+                  cordinates7.push({
+                      x:xCordes[i],
+                      y:yCordes[i],
+                  description:"DisoRDPbind",
+                  id:"a1",
+                  color:"#c071fe"
+                  })
+              }             
+                            
+              var xCordes = [1, 5, 24, 26, 28, 30, 35, 45, 48, 58, 65, 75, 77, 89]
+              var yCordes = [3, 5, 24, 26, 28, 32, 40, 45, 56, 61, 71, 75, 87, 96]
+              
+              for (var i=0;i<yCordes.length;i++) {
+                  cordinates7.push({
+                      x:xCordes[i],
+                      y:yCordes[i],
+                  description:"DRNApred",
+                  id:"b1",
+                  color:"#ce5dae"
+                  })
+              }
+              
+              
+              ft8.addFeature({
+                  data: cordinates7,
+                  name: "DNA binding residues",
+                  className: "test13", //can be used for styling
+                  color: "#000000",
+                  type: "rect" // ['rect', 'path', 'line']  
+              });
+              
+              
+              var dataDemo9 = [];
+              var score9 = [0.14, 0.14, 0.14, 0.14, 0.15, 0.16, 0.1, 0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.11, 0.11, 0.12, 0.13, 0.13, 0.12, 0.1, 0.1, 0.11, 0.11, 0.11, 0.09, 0.1, 0.08, 0.11, 0.09, 0.11, 0.1, 0.09, 0.09, 0.09, 0.07, 0.07, 0.06, 0.07, 0.07, 0.06, 0.08, 0.07, 0.06, 0.06, 0.06, 0.07, 0.07, 0.09, 0.08, 0.08, 0.08, 0.1, 0.1, 0.09, 0.11, 0.1, 0.13, 0.14, 0.14, 0.17, 0.15, 0.15, 0.18, 0.19, 0.18, 0.16, 0.16, 0.15, 0.15, 0.12, 0.15, 0.14, 0.15, 0.16, 0.2, 0.2, 0.21, 0.17, 0.17, 0.18, 0.15, 0.18, 0.18, 0.22, 0.23, 0.27, 0.29, 0.31, 0.32, 0.32, 0.46, 0.49, 0.53, 0.54, 0.55, 0.57]
+              for (var i=0;i<sequence.length;i++) {
+                  dataDemo9.push({
+                      x: i*1,
+                      y:score9[i]
+                  })
+              }
+              ft8.addFeature({
+                  data:dataDemo9 ,
+                  name: "DisoRDPbind score",
+                  className: "test14",
+                  color: "#c071fe",
+                  type: "line",
+                  filter: "type2",
+                  height: "5"
+              });
+              
+              
+              var dataDemo10 = [];
+              var score10 = [0.54, 0.61, 0.64, 0.32, 0.66, 0.33, 0.29, 0.2, 0.15, 0.2, 0.13, 0.11, 0.13, 0.13, 0.15, 0.14, 0.22, 0.38, 0.47, 0.38, 0.43, 0.41, 0.45, 0.65, 0.48, 0.52, 0.49, 0.59, 0.48, 0.55, 0.72, 0.82, 0.2, 0.18, 0.51, 0.79, 0.57, 0.58, 0.63, 0.61, 0.4, 0.16, 0.32, 0.25, 0.65, 0.34, 0.19, 0.51, 0.7, 0.81, 0.83, 0.64, 0.87, 0.89, 0.91, 0.86, 0.33, 0.81, 0.72, 0.7, 0.59, 0.42, 0.3, 0.39, 0.78, 0.77, 0.78, 0.79, 0.66, 0.8, 0.55, 0.2, 0.13, 0.24, 0.53, 0.49, 0.77, 0.61, 0.77, 0.89, 0.66, 0.88, 0.87, 0.55, 0.53, 0.85, 0.65, 0.24, 0.78, 0.72, 0.67, 0.62, 0.82, 0.88, 0.84, 0.91]
+              for (var i=0;i<sequence.length;i++) {
+                  dataDemo10.push({
+                      x: i*1,
+                      y:score10[i]
+                  })
+              }
+              ft8.addFeature({
+                  data:dataDemo10 ,
+                  name: "DRNApred score",
+                  className: "test15",
+                  color: "#ce5dae",
+                  type: "line",
+                  filter: "type2",
+                  height: "5"
+              });
+              
+              </script>
+
+
+            <table style="background-color:#fcc0065b;width:100%">
+              <tr>
+              <td style="width: 50%;"><b>Percentage of RNA-binding residues </b></td>
+              <td style="text-align:right;width: 10%;">0%</td>
+              <td style="text-align:right;font-size:10px">click here for details<input class="RNA" type="checkbox" name="prediction_category" value="RNA Binding" onchange="valueChanged()"/></td>
+              </tr>
+            </table>
+              <div id="ta10" class="col-lg-11" style="display:none">
+                <p style="margin-bottom: 2px;text-align: justify;">The RNA-binding residues were predicted by DisoRDPbind and DRNApred.</p>
+              <table id="t10">
+                <tbody>
+                  <tr>
+                    <td style="width: 50%;">DisoRDPBind</td>
+                    <td style="text-align:right;" class="numeric">1%</td>
+                    <td style="width: 40%;"></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 50%;">DRNApred</td>
+                    <td style="text-align:right;" class="numeric">0%</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <script>
+              var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+              var ft9 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+              '#ta10', 
+                                            {showAxis: true,
+                                              showSequence: true,
+                                              brushActive: true, 
+                                              toolbar:false, 
+                                              bubbleHelp:false,
+                                              animation:true,
+                                              zoomMax:50,
+                                              offset:{start:0,end:sequence.length}                
+                                          });
+              
+              var cordinates8 = [];
+              var xCordes = [55]
+              var yCordes = [55]
+              for (var i=0;i<yCordes.length;i++) {
+                  cordinates8.push({
+                      x:xCordes[i],
+                      y:yCordes[i],
+                  description:"DisoRDPbind",
+                  id:"k10",
+                  color:"#fcc006",
+                  
+                  })
+              }             
+                            
+              var xCordes = [1]
+              var yCordes = [5]
+              
+              for (var i=0;i<yCordes.length;i++) {
+                  cordinates8.push({
+                      x:xCordes[i],
+                      y:yCordes[i],
+                  description:"DRNApred",
+                  id:"b10",
+                  color:"#fdff38",
+                  
+                  })
+              }
+              
+              
+              
+              ft9.addFeature({
+                  data: cordinates8,
+                  name: "RNA binding residues",
+                  className: "test16", //can be used for styling
+                  color: "black",
+                  type: "rect",// ['rect', 'path', 'line']  
+              });
+              
+              
+              var dataDemo11 = [];
+              var score11 = [0.07, 0.06, 0.06, 0.05, 0.06, 0.07, 0.06, 0.06, 0.05, 0.05, 0.06, 0.06, 0.06, 0.07, 0.06, 0.05, 0.05, 0.06, 0.06, 0.06, 0.06, 0.06, 0.07, 0.08, 0.07, 0.04, 0.04, 0.04, 0.05, 0.06, 0.06, 0.06, 0.08, 0.12, 0.15, 0.14, 0.14, 0.16, 0.16, 0.16, 0.18, 0.19, 0.18, 0.19, 0.15, 0.18, 0.17, 0.19, 0.17, 0.14, 0.16, 0.15, 0.21, 0.22, 0.21, 0.2, 0.18, 0.18, 0.19, 0.16, 0.14, 0.14, 0.1, 0.11, 0.09, 0.08, 0.08, 0.08, 0.07, 0.09, 0.11, 0.12, 0.1, 0.11, 0.11, 0.1, 0.1, 0.1, 0.09, 0.1, 0.13, 0.14, 0.15, 0.14, 0.13, 0.16, 0.16, 0.16, 0.15, 0.13, 0.14, 0.13, 0.13, 0.12, 0.11, 0.1]
+              for (var i=0;i<sequence.length;i++) {
+                  dataDemo11.push({
+                      x: i*1,
+                      y:score11[i]
+                  })
+              }
+              ft9.addFeature({
+                  data:dataDemo11 ,
+                  name: "DisoRDPbind score",
+                  className: "test17",
+                  color: "#fcc006",
+                  type: "line",
+                  filter: "type2",
+                  height: "5"
+              });
+              
+              
+              var dataDemo12 = [];
+              var score12 = [0.04, 0.04, 0.03, 0.03, 0.04, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.03, 0.04, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.02]
+              for (var i=0;i<sequence.length;i++) {
+                  dataDemo12.push({
+                      x: i*1,
+                      y:score12[i]
+                  })
+              }
+              ft9.addFeature({
+                  data:dataDemo12 ,
+                  name: "DRNApred Score",
+                  className: "test18",
+                  color: "#fdff38",
+                  type: "line",
+                  filter: "type2",
+                  height: "5"
+              });
+              
+              
+              </script>
+            </div>
+
+        <div class="col-lg-8 col-lg-offset-2">
+            <p style="margin-top: 5px;margin-bottom: 2px"><b>Other Properties</b></p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2">
+            <table style="background-color:#964e025b;width:100%">
+              <td style="width: 50%;"><b>Signal peptide present</b></td>
+              <td style="text-align:right;width:10%" class="r bottom">Yes</td>
+              <td style="text-align:right;font-size:10px">click here for details<input class="signal_peptide" type="checkbox" name="prediction_category" value="Signal Peptide" onchange="valueChanged()"/></td>
+            </table>
+          <div id="ta5" class="col-lg-11" style="display:none">
+              <p style="margin-bottom: 2px;text-align: justify;">The signal peptide was predicted by SignalP.</p>
+          </div>
+        </div>
+           <script>
+           var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+           var ft4 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+           '#ta5', 
+                                          {
+                                           showAxis: true,
+                                           showSequence: true,
+                                           brushActive: true, 
+                                           toolbar:false, 
+                                           bubbleHelp:false, 
+                                           zoomMax:50,
+                           				   offset:{start:0,end:sequence.length}
+                                       });
+           var cordinates3 = [];
+           var xCordes = [0]
+           var yCordes = [21]
+           for (var i=0;i<yCordes.length;i++) {
+               cordinates3.push({
+                   x:xCordes[i],
+                   y:yCordes[i],
+               description:"SignalP",
+               id:"c1",
+               color:"#964e02"
+               })
+           }             
+                                                 
+           ft4.addFeature({
+               data: cordinates3,
+               name: "Signal peptides",
+               className: "test5", //can be used for styling
+               color: "#964e02",
+               type: "rect" // ['rect', 'path', 'line']
+           });
+           
+           var dataDemo3 = [];
+           var score3 = [0.9986, 0.9986, 0.9986, 0.9987, 0.9987, 0.9987, 0.9987, 0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9987, 0.9984, 0.9971, 0.9946, 0.9942, 0.8892, 0.8883, 0.8873, 0.8863, 0.8846, 0.0314, 0.0281, 0.0041, 0.0029, 0.0016, 0.0014, 0.0011, 0.0007, 0.0006, 0.0005, 0.0004, 0.0003, 0.0003, 0.0003, 0.0002, 0.0002, 0.0002, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+           for (var i=0;i<sequence.length;i++) {
+               dataDemo3.push({
+                   x: i*1,
+                   y:score3[i]
+               })
+           }
+           ft4.addFeature({
+               data:dataDemo3 ,
+               name: "Signalpeptides Score",
+               className: "test6",
+               color: "#964e02",
+               type: "line",
+               filter: "type2",
+               height: "5"
+           });
+           </script>
+
+            <div class="col-lg-8 col-lg-offset-2">
+            <table style="width: 100%;background-color:#607c8e5b">
+              <tr>
+                <td style="width: 50%;"><b>Percentage of highly conserved residues</b></td>
+                <td style="text-align:right;width: 10%;">13%</td>
+                <td style="text-align:right;font-size:10px">click here for details<input class="conservation" type="checkbox" name="prediction_category" value="Conservation" onchange="valueChanged()"/></td>
+              </tr>
+            </table>
+             <div id="ta2" class="col-lg-11" style="display:none">
+              <p style="margin-bottom: 2px;text-align: justify;">The residue conservation was predicted by mmseq2. 
+              </p>
+            </div>
+          </div>
+      
+          <script>
+          var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+          var ft1 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+          '#ta2', 
+                                         {
+                                          showAxis: true,
+                                          showSequence: true,
+                                          brushActive: true, 
+                                          toolbar:false, 
+                                          bubbleHelp:false,
+                                          animation:true, 
+                                          zoomMax:50,
+                          				  offset:{start:0,end:sequence.length}
+                          
+                                      });
+          var cordinates0 = [];
+          
+          var xCordes = [4, 9, 38, 44, 79, 83, 87]
+          var yCordes = [4, 9, 38, 44, 79, 83, 87]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 1",
+              id:"i1",
+              color:"#f0f3f5"
+              })
+          }             
+                        
+          var xCordes = [3, 6, 15, 24, 30, 39, 41, 45, 48, 51, 59, 61, 65, 68, 72, 88]
+          var yCordes = [3, 6, 15, 24, 31, 39, 41, 46, 48, 52, 59, 61, 65, 68, 72, 89]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 2",
+              id:"i2",
+              color:"#d1dae0"
+              })
+          }
+          
+          var xCordes = [12, 18, 21, 28, 36, 40, 75, 77, 96]
+          var yCordes = [13, 18, 21, 28, 36, 40, 75, 78, 96]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 3",
+              id:"i3",
+              color:"#b3c2cb"
+              })
+          }             
+                        
+          var xCordes = [8, 11, 14, 22, 32, 47, 71]
+          var yCordes = [8, 11, 14, 22, 32, 47, 71]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 4",
+              id:"i4",
+              color:"#95aab7"
+              })
+          } 
+          
+          var xCordes = [5, 7, 16, 20, 23, 25, 37, 49, 56, 58, 62, 74, 86, 90, 93]
+          var yCordes = [5, 7, 16, 20, 23, 25, 37, 49, 56, 58, 62, 74, 86, 90, 94]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 5",
+              id:"i5",
+              color:"#7691a2"
+              })
+          }
+          
+          var xCordes = [42, 54, 63, 69, 81]
+          var yCordes = [42, 54, 63, 69, 81]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 6",
+              id:"i6",
+              color:"#5d7889"
+              })
+          } 
+          
+          var xCordes = [2, 55, 66, 70]
+          var yCordes = [2, 55, 67, 70]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 7",
+              id:"i7",
+              color:"#485d6a"
+              })
+          }
+          
+          var xCordes = [29, 53, 60, 95]
+          var yCordes = [29, 53, 60, 95]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 8",
+              id:"i8",
+              color:"#34434c"
+              })
+          } 
+          
+          var xCordes = [19, 26, 35, 43, 64, 76, 85, 92]
+          var yCordes = [19, 26, 35, 43, 64, 76, 85, 92]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 9",
+              id:"i9",
+              color:"#1f282e"
+              })
+          }
+          
+          var xCordes = [1, 10, 17, 27, 33, 50, 57, 73, 80, 82, 84, 91]
+          var yCordes = [1, 10, 17, 27, 34, 50, 57, 73, 80, 82, 84, 91]
+          
+          for (var i=0;i<yCordes.length;i++) {
+              cordinates0.push({
+                  x:xCordes[i],
+                  y:yCordes[i],
+              description:"Conservation Level 10",
+              id:"i10",
+              color:"#0a0d0f"
+              })
+          }                 
+                              
+                        
+          ft1.addFeature({
+              data: cordinates0,
+              name: "Conservation",
+              className: "test0", //can be used for styling
+              color: "#0F8292",
+              type: "rect" // ['rect', 'path', 'line']
+          });
+          
+          var dataDemo1 = [];
+          var score1 = [0.82, 0.57, 0.26, 0.2 , 0.47, 0.26, 0.49, 0.41, 0.15, 0.78, 0.41,
+       0.4 , 0.37, 0.44, 0.26, 0.46, 0.98, 0.39, 0.64, 0.45, 0.4 , 0.45,
+       0.46, 0.24, 0.45, 0.69, 0.75, 0.4 , 0.59, 0.27, 0.31, 0.44, 0.82,
+       0.82, 0.64, 0.37, 0.49, 0.14, 0.26, 0.33, 0.27, 0.53, 0.69, 0.17,
+       0.29, 0.27, 0.41, 0.27, 0.51, 0.75, 0.21, 0.3 , 0.62, 0.53, 0.56,
+       0.48, 0.82, 0.46, 0.24, 0.59, 0.31, 0.47, 0.52, 0.64, 0.22, 0.56,
+       0.54, 0.29, 0.51, 0.57, 0.44, 0.22, 0.82, 0.45, 0.36, 0.68, 0.35,
+       0.34, 0.  , 1.  , 0.52, 0.73, 0.18, 0.73, 0.64, 0.48, 0.19, 0.3 ,
+       0.25, 0.5 , 0.81, 0.68, 0.48, 0.45, 0.6 , 0.4]
+          for (var i=0;i<sequence.length;i++) {
+              dataDemo1.push({
+                  x: i*1,
+                  y:score1[i]
+              })
+          }
+          
+          
+          ft1.addFeature({
+              data:dataDemo1 ,
+              name: "Conservation score",
+              className: "test1",
+              color: "#607c8e",
+              type: "line",
+              filter: "type3",
+              height: "5"
+          });
+          
+          </script>
+
+
+
+      <div class="col-lg-8 col-lg-offset-2">
+             <table style="background-color:#ff94085b;width:100%">
+              <tr>
+              <td style="width: 50%;"><b>Percentage of disordered linker residues </b></td>
+              <td style="text-align:right;width:10%" class="r bottom">0%</td>
+              <td style="text-align:right;font-size:10px">click here for details<input class="disorder_linkers" type="checkbox" name="prediction_category" value="Disorder Linkers" onchange="valueChanged()"/></td>
+              </tr>
+            </table>
+              <div id="ta7" class="col-lg-11" style="display:none">
+                <p style="margin-bottom: 2px;text-align: justify;">The disordered linker residues were predicted by DFLpred.</p>
+            </div>
+          </div>
+          <script>
+            var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+            var ft6 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+            '#ta7', 
+                                           {
+                                            showAxis: true,
+                                            showSequence: true,
+                                            brushActive: true, 
+                                            toolbar:false, 
+                                            bubbleHelp:false, 
+                                            animation:true,
+                                            zoomMax:50,
+                                            offset:{start:0,end:sequence.length}                
+                                        });
+            var cordinates5 = [];
+            var xCordes = [0]
+            var yCordes = [0]
+            for (var i=0;i<yCordes.length;i++) {
+                cordinates5.push({
+                    x:xCordes[i],
+                    y:yCordes[i],
+                description:"DFLPred",
+                id:"c1",
+                color:"#ff9408"
+                })
+            }             
+                                                  
+            ft6.addFeature({
+                data: cordinates5,
+                name: "Linker Residues",
+                className: "test7", //can be used for styling
+                color: "#ff9408",
+                type: "rect" // ['rect', 'path', 'line']
+            });
+            
+            var dataDemo5 = [];
+            var score5 = [0.04, 0.05, 0.04, 0.04, 0.04, 0.04, 0.05, 0.04, 0.05, 0.07, 0.06, 0.08, 0.1, 0.1, 0.1, 0.09, 0.1, 0.08, 0.08, 0.09, 0.1, 0.1, 0.11, 0.11, 0.14, 0.14, 0.12, 0.13, 0.12, 0.12, 0.11, 0.1, 0.11, 0.09, 0.12, 0.11, 0.11, 0.1, 0.09, 0.08, 0.07, 0.06, 0.06, 0.08, 0.08, 0.09, 0.1, 0.09, 0.09, 0.1, 0.14, 0.13, 0.17, 0.14, 0.12, 0.13, 0.13, 0.11, 0.11, 0.11, 0.11, 0.09, 0.08, 0.07, 0.09, 0.08, 0.07, 0.07, 0.07, 0.07, 0.08, 0.1, 0.11, 0.13, 0.15, 0.15, 0.16, 0.14, 0.13, 0.12, 0.13, 0.11, 0.12, 0.16, 0.18, 0.16, 0.17, 0.13, 0.12, 0.11, 0.1, 0.08, 0.09, 0.07, 0.08, 0.11]
+            for (var i=0;i<sequence.length;i++) {
+                dataDemo5.push({
+                    x: i*1,
+                    y:score5[i]
+                })
+            }
+            ft6.addFeature({
+                data:dataDemo5 ,
+                name: "Linker Score",
+                className: "test8",
+                color: "#ff9408",
+                type: "line",
+                filter: "type1",
+                height: "5"
+            });
+            </script>
+
+
+        </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2 id="thirdtitle">
+            <p><b>Residue Level Characterization</b></p> 
+          </h2>
+        </div>
+
+      <form method="post" action="/Tests/Post"> 
+        <div class="col-lg-8 col-lg-offset-2">
+        <fieldset>
+        </fieldset>  
+      </form> 
+
+      <script type="text/javascript">
+          function valueChanged()
+          {
+              
+          if($('.conservation').is(":checked"))   
+                  $(".Cselectt1").hide();
+                  
+              else
+                  $(".Cselectt1").show();
+          if($('.conservation').is(":checked")) 
+                  $("#ta2").show();
+              else
+                  $("#ta2").hide();
+
+          if($('.solvent_accesibility').is(":checked"))   
+                  $(".Cselectt2").hide();
+              else
+                  $(".Cselectt2").show();
+          if($('.solvent_accesibility').is(":checked"))   
+                  $("#ta3").show();
+              else
+                  $("#ta3").hide();
+          
+          if($('.secondary_structure').is(":checked"))   
+                  $(".Cselectt3").hide();
+              else
+                  $(".Cselectt3").show();
+          if($('.secondary_structure').is(":checked"))   
+                  $("#ta4").show();
+              else
+                  $("#ta4").hide();
+          
+          if($('.signal_peptide').is(":checked"))   
+                  $(".Cselectt4").hide();
+              else
+                  $(".Cselectt4").show();
+          if($('.signal_peptide').is(":checked"))   
+              	  $("#ta5").show();
+              else
+              	  $("#ta5").hide();
+
+          if($('.disorder_prediction').is(":checked"))   
+                  $(".Cselectt5").hide();
+              else
+                  $(".Cselectt5").show();
+          if($('.disorder_prediction').is(":checked"))   
+                  $("#ta6").show();
+              else
+              	  $("#ta6").hide();
+            
+          if($('.disorder_linkers').is(":checked"))   
+                  $(".Cselectt6").hide();
+              else
+                  $(".Cselectt6").show();
+          if($('.disorder_linkers').is(":checked"))   
+              	  $("#ta7").show();
+              else
+                  $("#ta7").hide();
+            
+          if($('.protein_binding').is(":checked"))   
+                  $(".Cselectt7").hide();
+              else
+                  $(".Cselectt7").show();
+          if($('.protein_binding').is(":checked"))   
+                  $("#ta8").show();
+              else
+                  $("#ta8").hide();
+          
+          if($('.DNA').is(":checked"))   
+                  $(".Cselectt8").hide();
+              else
+                  $(".Cselectt8").show();
+          if($('.DNA').is(":checked"))   
+                  $("#ta9").show();
+              else
+                  $("#ta9").hide();
+            
+          if($('.RNA').is(":checked"))   
+                  $(".Cselectt9").hide();
+              else
+                  $(".Cselectt9").show();
+          if($('.RNA').is(":checked"))   
+                  $("#ta10").show();
+              else
+                  $("#ta10").hide();
+  
+            
+          }
+      </script>
+      
+      <div id="fv5" class="Cselectt5"></div>
+      <script>
+      var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+      var ftx5 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+      '#fv5', 
+                                     {
+                                      showAxis: true,
+                                      showSequence: true,
+                                      brushActive: true, 
+                                      toolbar:false, 
+                                      bubbleHelp:false,
+                                      animation:true,
+                                      zoomMax:50,
+                                      offset:{start:0,end:sequence.length}								
+                                  });
+      var cordinates4 = [];
+      var xCordes = [92]
+      var yCordes = [92]
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates4.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"    VSL2B",
+              id:"c1",
+              color:"#75fd63"
+          })
+      }							
+        var nameee= 'Disordered \
+		                 residues'                                                                         
+      ftx5.addFeature({
+          data: cordinates4,
+          name: nameee,
+          className: "test5", //can be used for styling
+          color: "#75fd63",
+          type: "rect" // ['rect', 'path', 'line']
+      });
+      
+      var dataDemo4 = [];
+      var score4 = [0.6, 0.5, 0.43, 0.28, 0.17, 0.1, 0.06, 0.04, 0.03, 0.02, 0.03, 0.03, 0.04, 0.05, 0.07, 0.13, 0.2, 0.3, 0.39, 0.51, 0.56, 0.6, 0.63, 0.61, 0.54, 0.49, 0.44, 0.34, 0.27, 0.22, 0.19, 0.15, 0.11, 0.11, 0.11, 0.13, 0.16, 0.18, 0.19, 0.21, 0.19, 0.17, 0.17, 0.16, 0.14, 0.13, 0.12, 0.13, 0.13, 0.14, 0.16, 0.2, 0.24, 0.26, 0.26, 0.28, 0.29, 0.29, 0.28, 0.27, 0.24, 0.23, 0.24, 0.23, 0.26, 0.28, 0.29, 0.28, 0.29, 0.3, 0.28, 0.26, 0.23, 0.2, 0.18, 0.17, 0.17, 0.19, 0.21, 0.23, 0.31, 0.31, 0.34, 0.38, 0.39, 0.41, 0.47, 0.53, 0.58, 0.64, 0.7, 0.73, 0.72, 0.68, 0.66, 0.69]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo4.push({
+              x: i*1,
+              y:score4[i]
+          })
+      }
+      ftx5.addFeature({
+          data:dataDemo4 ,
+          name: "Disorder score",
+          className: "test6",
+          color: "#75fd63",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      </script>
+      
+      
+      
+      <div id="fv2" class="col-lg-11" ></div>
+
+      <script>
+      
+      var ftx2 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+      '#fv2', 
+                                     {
+                                      showAxis: true,
+                                      showSequence: true,
+                                      brushActive: true, 
+                                      toolbar:false, 
+                                      bubbleHelp:false, 
+                                      zoomMax:50,
+                                      offset:{start:0,end:sequence.length}
+                                  });
+      
+      
+      
+      
+      
+      var cordinates1 = [];
+      var xCordes = [1, 19, 24, 90, 93]
+      var yCordes = [1, 19, 24, 90, 95]
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates1.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"ASA Quick",
+              id:"i10",
+              color:"#ffd1df"
+          })
+      }							
+                                  
+                                  
+                                  
+                                  
+      ftx2.addFeature({
+          data: cordinates1,
+          name: "Exposed residues",
+          className: "test2", //can be used for styling
+          color: "#ffd1df",
+          type: "rect" // ['rect', 'path', 'line']
+      });
+      
+      var dataDemo2 = [];
+      var score2 = [0.67, 0.5, 0.37, 0.22, 0.2, 0.2, 0.09, 0.12, 0.11, 0.08, 0.14, 0.15, 0.18, 0.21, 0.26, 0.23, 0.26, 0.35, 0.59, 0.49, 0.29, 0.48, 0.41, 0.56, 0.39, 0.3, 0.49, 0.23, 0.34, 0.21, 0.2, 0.46, 0.13, 0.13, 0.22, 0.29, 0.22, 0.3, 0.48, 0.47, 0.47, 0.23, 0.32, 0.25, 0.35, 0.1, 0.14, 0.18, 0.12, 0.2, 0.35, 0.32, 0.26, 0.31, 0.3, 0.26, 0.19, 0.37, 0.45, 0.45, 0.28, 0.15, 0.25, 0.24, 0.29, 0.14, 0.44, 0.5, 0.36, 0.5, 0.45, 0.22, 0.16, 0.23, 0.26, 0.32, 0.25, 0.24, 0.28, 0.21, 0.14, 0.42, 0.43, 0.16, 0.39, 0.48, 0.26, 0.24, 0.57, 0.5, 0.16, 0.5, 0.59, 0.58, 0.56, 0.79]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo2.push({
+              x: i*1,
+              y:score2[i]
+          })
+      }
+      
+      ftx2.addFeature({
+          data:dataDemo2 ,
+          name: "Solvent accesibility",
+          className: "test3",
+          color: "#ffd1df",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      </script>
+      
+      <div id="fv3" class="Cselectt3"></div>
+
+      <script>
+      
+      var ftx3 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+      '#fv3', 
+                                     {
+                                      showAxis: true,
+                                      showSequence: true,
+                                      brushActive: true, 
+                                      toolbar:false, 
+                                      bubbleHelp:false, 
+                                      zoomMax:50,
+                                      offset:{start:0,end:sequence.length}
+                                  });
+      var cordinates2 = [];
+      
+      var xCordes = [1, 15, 51, 67, 91]
+      var yCordes = [2, 44, 61, 73, 96]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates2.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"H",
+              id:"a1",
+              color:"#cf6275"
+          })
+      }							
+                                  
+      var xCordes = [3, 75]
+      var yCordes = [14, 90]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates2.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"E",
+              id:"b1",
+              color:"#fffd01"
+          })
+      }
+      
+      var xCordes = [45, 62, 74]
+      var yCordes = [50, 66, 74]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates2.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"C",
+              id:"c1",
+              color:"#25a36f"
+          })
+      }							
+                                  
+                                  
+                                  
+      ftx3.addFeature({
+          data: cordinates2,
+          name: "Secondary Structure",
+          className: "test4", //can be used for styling
+          color: "black",
+          type: "rect" // ['rect', 'path', 'line']
+      });
+      
+      var dataDemot = [];
+      var scoret = [1.0, 0.4 , 0.73, 0.82, 0.9 , 0.97, 0.99, 0.99, 0.99, 1.0, 1.0,
+       0.96, 0.93, 0.81, 0.82, 0.93, 0.97, 0.87, 0.81, 0.74, 0.71, 0.84,
+       0.84, 0.87, 0.79, 0.69, 0.5 , 0.54, 0.6 , 0.59, 0.49, 0.41, 0.33,
+       0.36, 0.44, 0.45, 0.46, 0.5 , 0.58, 0.64, 0.61, 0.64, 0.64, 0.49,
+       0.57, 0.7 , 0.81, 0.82, 0.65, 0.49, 0.49, 0.8 , 0.86, 0.84, 0.86,
+       0.71, 0.66, 0.85, 0.9 , 0.82, 0.89, 0.58, 0.89, 0.95, 0.93, 0.76,
+       0.52, 0.77, 0.9 , 0.76, 0.55, 0.41, 0.35, 0.34, 0.41, 0.55, 0.66,
+       0.8 , 0.84, 0.95, 0.96, 0.98, 0.95, 0.9 , 0.95, 0.94, 0.89, 0.82,
+       0.75, 0.52, 0.95, 0.95, 0.95, 0.95, 0.95, 1.0]
+      var ss_descript=['X', 'Helix', 'Helix', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Coil', 'Coil', 'Coil', 'Coil', 'Coil', 'Coil', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Coil', 'Coil', 'Coil', 'Coil', 'Coil', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Coil', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Strand', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'Helix', 'X']
+      for (var i=0;i<sequence.length;i++) {
+          dataDemot.push({
+              x: i*1,
+              y:scoret[i],
+              description:ss_descript[i]
+          })
+      }
+      
+      ftx3.addFeature({
+          data:dataDemot ,
+          name: "Secondary struc.score",
+          className: "test3",
+          color: "black",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      
+      </script>
+      
+      <div id="fv7" class="Cselectt7"></div>
+      <script>
+      var ftx7 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+      '#fv7', 
+                                     {
+                                      showAxis: true,
+                                      showSequence: true,
+                                      brushActive: true, 
+                                      toolbar:false, 
+                                      bubbleHelp:false, 
+                                      zoomMax:50,
+                                      offset:{start:0,end:sequence.length}								
+                                  });
+      
+      var cordinates6 = [];
+      var xCordes = []
+      var yCordes = []
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates6.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"   DisoRDPbind",
+              id:"a1",
+              color:"#3d7afd"
+          })
+      }							
+                                  
+      var xCordes = [1, 16, 22, 24, 26, 32, 35, 39, 44, 47, 59, 68, 75, 78, 82, 85, 90, 95]
+      var yCordes = [4, 18, 22, 24, 27, 32, 35, 41, 45, 56, 60, 68, 75, 80, 83, 85, 90, 95]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates6.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"                                            SCRIBER",
+              id:"b1",
+              color:"#3b5b92"
+          })
+      }
+      
+      var xCordes = [1, 51, 60, 73]
+      var yCordes = [3, 51, 70, 96]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates6.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"                                                     MoRFchibi",
+              id:"c1",
+              color:"#01889f"
+          })
+      }
+      
+      ftx7.addFeature({
+          data: cordinates6,
+          name: "Prot.binding residues",
+          className: "test9", //can be used for styling
+          color: "#000000",
+          type: "rect" // ['rect', 'path', 'line']	
+      });
+      
+      
+      var dataDemo6 = [];
+      var score6 = [0.3, 0.34, 0.32, 0.33, 0.28, 0.29, 0.3, 0.3, 0.31, 0.29, 0.32, 0.3, 0.3, 0.35, 0.34, 0.35, 0.35, 0.31, 0.32, 0.33, 0.38, 0.39, 0.42, 0.45, 0.47, 0.48, 0.5, 0.51, 0.53, 0.52, 0.52, 0.49, 0.49, 0.49, 0.48, 0.47, 0.47, 0.46, 0.47, 0.46, 0.47, 0.47, 0.47, 0.47, 0.49, 0.48, 0.45, 0.44, 0.43, 0.46, 0.45, 0.41, 0.39, 0.35, 0.35, 0.33, 0.3, 0.27, 0.28, 0.27, 0.27, 0.25, 0.27, 0.27, 0.27, 0.29, 0.27, 0.3, 0.3, 0.32, 0.3, 0.29, 0.3, 0.32, 0.32, 0.33, 0.33, 0.34, 0.35, 0.36, 0.33, 0.31, 0.35, 0.37, 0.35, 0.34, 0.33, 0.32, 0.33, 0.32, 0.32, 0.32, 0.3, 0.3, 0.32, 0.32]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo6.push({
+              x: i*1,
+              y:score6[i]
+          })
+      }
+      ftx7.addFeature({
+          data:dataDemo6 ,
+          name: "DisoRDPbind score",
+          className: "test10",
+          color: "#3d7afd",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      
+      
+      var dataDemo7 = [];
+      var score7 = [0.37, 0.34, 0.2, 0.19, 0.19, 0.18, 0.14, 0.19, 0.18, 0.15, 0.21, 0.21, 0.22, 0.19, 0.19, 0.23, 0.28, 0.23, 0.22, 0.2, 0.2, 0.23, 0.18, 0.23, 0.21, 0.24, 0.28, 0.19, 0.18, 0.17, 0.14, 0.32, 0.11, 0.11, 0.24, 0.17, 0.18, 0.18, 0.31, 0.32, 0.29, 0.19, 0.19, 0.24, 0.38, 0.2, 0.28, 0.36, 0.27, 0.33, 0.51, 0.47, 0.33, 0.27, 0.35, 0.39, 0.16, 0.2, 0.28, 0.26, 0.13, 0.17, 0.16, 0.17, 0.15, 0.12, 0.14, 0.27, 0.11, 0.14, 0.18, 0.15, 0.14, 0.17, 0.25, 0.2, 0.2, 0.3, 0.26, 0.37, 0.17, 0.25, 0.3, 0.21, 0.24, 0.19, 0.19, 0.14, 0.21, 0.25, 0.14, 0.21, 0.18, 0.19, 0.26, 0.2]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo7.push({
+              x: i*1,
+              y:score7[i]
+          })
+      }
+      ftx7.addFeature({
+          data:dataDemo7 ,
+          name: "SCRIBER score",
+          className: "test11",
+          color: "#3b5b92",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      
+      var dataDemo8 = [];
+      var score8 = [0.73, 0.72, 0.71, 0.7, 0.69, 0.68, 0.67, 0.67, 0.66, 0.65, 0.64, 0.64, 0.64, 0.65, 0.65, 0.65, 0.66, 0.66, 0.66, 0.58, 0.49, 0.41, 0.41, 0.43, 0.44, 0.5, 0.64, 0.68, 0.67, 0.67, 0.67, 0.66, 0.65, 0.64, 0.64, 0.64, 0.64, 0.64, 0.64, 0.65, 0.66, 0.66, 0.67, 0.67, 0.68, 0.68, 0.69, 0.69, 0.7, 0.7, 0.71, 0.68, 0.69, 0.64, 0.64, 0.64, 0.63, 0.64, 0.69, 0.73, 0.74, 0.77, 0.77, 0.77, 0.77, 0.77, 0.77, 0.78, 0.74, 0.71, 0.7, 0.67, 0.72, 0.72, 0.74, 0.75, 0.76, 0.76, 0.76, 0.77, 0.77, 0.77, 0.78, 0.78, 0.79, 0.79, 0.79, 0.8, 0.81, 0.81, 0.81, 0.82, 0.83, 0.82, 0.81, 0.8]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo8.push({
+              x: i*1,
+              y:score8[i]
+          })
+      }
+      ftx7.addFeature({
+          data:dataDemo8 ,
+          name: "MoRFchibi score",
+          className: "test12",
+          color: "#01889f",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      </script>
+      
+      <div id="fv8" class="Cselectt8"></div>
+      <script>
+      var ftx8 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+      '#fv8', 
+                                     {
+                                      showAxis: true,
+                                      showSequence: true,
+                                      brushActive: true, 
+                                      toolbar:false, 
+                                      bubbleHelp:false, 
+                                      zoomMax:50,
+                                      offset:{start:0,end:sequence.length}								
+                                  });
+      
+      var cordinates7 = [];
+      var xCordes = [88]
+      var yCordes = [96]
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates7.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"             DisoRDPbind",
+              id:"a1",
+              color:"#c071fe"
+          })
+      }							
+                                  
+      var xCordes = [1, 5, 24, 26, 28, 30, 35, 45, 48, 58, 65, 75, 77, 89]
+      var yCordes = [3, 5, 24, 26, 28, 32, 40, 45, 56, 61, 71, 75, 87, 96]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates7.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"                 DRNApred",
+              id:"b1",
+              color:"#ce5dae"
+          })
+      }
+      
+      
+      ftx8.addFeature({
+          data: cordinates7,
+          name: "DNA binding residues",
+          className: "test13", //can be used for styling
+          color: "#000000",
+          type: "rect" // ['rect', 'path', 'line']	
+      });
+      
+      
+      var dataDemo9 = [];
+      var score9 = [0.14, 0.14, 0.14, 0.14, 0.15, 0.16, 0.1, 0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.11, 0.11, 0.12, 0.13, 0.13, 0.12, 0.1, 0.1, 0.11, 0.11, 0.11, 0.09, 0.1, 0.08, 0.11, 0.09, 0.11, 0.1, 0.09, 0.09, 0.09, 0.07, 0.07, 0.06, 0.07, 0.07, 0.06, 0.08, 0.07, 0.06, 0.06, 0.06, 0.07, 0.07, 0.09, 0.08, 0.08, 0.08, 0.1, 0.1, 0.09, 0.11, 0.1, 0.13, 0.14, 0.14, 0.17, 0.15, 0.15, 0.18, 0.19, 0.18, 0.16, 0.16, 0.15, 0.15, 0.12, 0.15, 0.14, 0.15, 0.16, 0.2, 0.2, 0.21, 0.17, 0.17, 0.18, 0.15, 0.18, 0.18, 0.22, 0.23, 0.27, 0.29, 0.31, 0.32, 0.32, 0.46, 0.49, 0.53, 0.54, 0.55, 0.57]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo9.push({
+              x: i*1,
+              y:score9[i]
+          })
+      }
+      ftx8.addFeature({
+          data:dataDemo9 ,
+          name: "DisoRDPbind score",
+          className: "test14",
+          color: "#c071fe",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      
+      
+      var dataDemo10 = [];
+      var score10 = [0.54, 0.61, 0.64, 0.32, 0.66, 0.33, 0.29, 0.2, 0.15, 0.2, 0.13, 0.11, 0.13, 0.13, 0.15, 0.14, 0.22, 0.38, 0.47, 0.38, 0.43, 0.41, 0.45, 0.65, 0.48, 0.52, 0.49, 0.59, 0.48, 0.55, 0.72, 0.82, 0.2, 0.18, 0.51, 0.79, 0.57, 0.58, 0.63, 0.61, 0.4, 0.16, 0.32, 0.25, 0.65, 0.34, 0.19, 0.51, 0.7, 0.81, 0.83, 0.64, 0.87, 0.89, 0.91, 0.86, 0.33, 0.81, 0.72, 0.7, 0.59, 0.42, 0.3, 0.39, 0.78, 0.77, 0.78, 0.79, 0.66, 0.8, 0.55, 0.2, 0.13, 0.24, 0.53, 0.49, 0.77, 0.61, 0.77, 0.89, 0.66, 0.88, 0.87, 0.55, 0.53, 0.85, 0.65, 0.24, 0.78, 0.72, 0.67, 0.62, 0.82, 0.88, 0.84, 0.91]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo10.push({
+              x: i*1,
+              y:score10[i]
+          })
+      }
+      ftx8.addFeature({
+          data:dataDemo10 ,
+          name: "DRNApred score",
+          className: "test15",
+          color: "#ce5dae",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      
+      </script>
+      
+      <div id="fv9" class="Cselectt9"></div>
+      <script>
+      var ftx9 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+      '#fv9', 
+                                    {showAxis: true,
+                                      showSequence: true,
+                                      brushActive: true, 
+                                      toolbar:false, 
+                                      bubbleHelp:false, 
+                                      zoomMax:50,
+                                      offset:{start:0,end:sequence.length}								
+                                  });
+      
+      var cordinates8 = [];
+      var xCordes = [55]
+      var yCordes = [55]
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates8.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"   DisoRDPbind",
+              id:"k10",
+              color:"#fcc006",
+              
+          })
+      }							
+                                  
+      var xCordes = []
+      var yCordes = []
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates8.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"     DRNApred",
+              id:"b10",
+              color:"#fdff38",
+              
+          })
+      }
+      
+      
+      
+      ftx9.addFeature({
+          data: cordinates8,
+          name: "RNA binding residues",
+          className: "test16", //can be used for styling
+          color: "black",
+          type: "rect",// ['rect', 'path', 'line']	
+      });
+      
+      
+      var dataDemo11 = [];
+      var score11 = [0.07, 0.06, 0.06, 0.05, 0.06, 0.07, 0.06, 0.06, 0.05, 0.05, 0.06, 0.06, 0.06, 0.07, 0.06, 0.05, 0.05, 0.06, 0.06, 0.06, 0.06, 0.06, 0.07, 0.08, 0.07, 0.04, 0.04, 0.04, 0.05, 0.06, 0.06, 0.06, 0.08, 0.12, 0.15, 0.14, 0.14, 0.16, 0.16, 0.16, 0.18, 0.19, 0.18, 0.19, 0.15, 0.18, 0.17, 0.19, 0.17, 0.14, 0.16, 0.15, 0.21, 0.22, 0.21, 0.2, 0.18, 0.18, 0.19, 0.16, 0.14, 0.14, 0.1, 0.11, 0.09, 0.08, 0.08, 0.08, 0.07, 0.09, 0.11, 0.12, 0.1, 0.11, 0.11, 0.1, 0.1, 0.1, 0.09, 0.1, 0.13, 0.14, 0.15, 0.14, 0.13, 0.16, 0.16, 0.16, 0.15, 0.13, 0.14, 0.13, 0.13, 0.12, 0.11, 0.1]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo11.push({
+              x: i*1,
+              y:score11[i]
+          })
+      }
+      ftx9.addFeature({
+          data:dataDemo11 ,
+          name: "DisoRDPbind score",
+          className: "test17",
+          color: "#fcc006",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      
+      
+      var dataDemo12 = [];
+      var score12 = [0.04, 0.04, 0.03, 0.03, 0.04, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.03, 0.04, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.02]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo12.push({
+              x: i*1,
+              y:score12[i]
+          })
+      }
+      ftx9.addFeature({
+          data:dataDemo12 ,
+          name: "DRNApred score",
+          className: "test18",
+          color: "#fdff38",
+          type: "line",
+          filter: "type2",
+          height: "5"
+      });
+      
+      
+          
+      
+      </script>
+      
+      
+      <div id="fv4" class="Cselectt4"></div>
+    <script>
+    var ftx4 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+    '#fv4', 
+                                {
+                                    showAxis: true,
+                                    showSequence: true,
+                                    brushActive: true, 
+                                    toolbar:false, 
+                                    bubbleHelp:false, 
+                                    zoomMax:50,
+                                    offset:{start:0,end:sequence.length}
+                                });
+    var cordinates3 = [];
+    var xCordes = [0]
+    var yCordes = [21]
+    for (var i=0;i<yCordes.length;i++) {
+        cordinates3.push({
+            x:xCordes[i],
+            y:yCordes[i],
+            description:"   SignalP",
+            id:"c1",
+            color:"#964e02"
+        })
+    }							
+                                                                                
+    ftx4.addFeature({
+        data: cordinates3,
+        name: "Signal peptides",
+        className: "test5", //can be used for styling
+        color: "#964e02",
+        type: "rect" // ['rect', 'path', 'line']
+    });
+
+    var dataDemo3 = [];
+    var score3 = [0.9986, 0.9986, 0.9986, 0.9987, 0.9987, 0.9987, 0.9987, 0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9987, 0.9984, 0.9971, 0.9946, 0.9942, 0.8892, 0.8883, 0.8873, 0.8863, 0.8846, 0.0314, 0.0281, 0.0041, 0.0029, 0.0016, 0.0014, 0.0011, 0.0007, 0.0006, 0.0005, 0.0004, 0.0003, 0.0003, 0.0003, 0.0002, 0.0002, 0.0002, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    for (var i=0;i<sequence.length;i++) {
+        dataDemo3.push({
+            x: i*1,
+            y:score3[i]
+        })
+    }
+    ftx4.addFeature({
+        data:dataDemo3 ,
+        name: "Signalpeptides score",
+        className: "test6",
+        color: "#964e02",
+        type: "line",
+        filter: "type2",
+        height: "5"
+    });
+    </script>
+      
+      <div id="fv1" class="Cselectt1"></div>
+
+      <script>
+      
+      var sequence= 'MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK'
+      
+      var ftx1 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+      '#fv1', 
+                                     {
+                                      showAxis: true,
+                                      showSequence: true,
+                                      brushActive: true, 
+                                      toolbar:false, 
+                                      bubbleHelp:false, 
+                                      animation :true,
+                                      zoomMax:50,
+                                      offset:{start:0,end:sequence.length}
+                                      
+                                  });
+      var cordinates0 = [];
+      
+      var xCordes = [4, 9, 38, 44, 79, 83, 87]
+      var yCordes = [4, 9, 38, 44, 79, 83, 87]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 1",
+              id:"i1",
+              color:"#f0f3f5"
+          })
+      }							
+                                  
+      var xCordes = [3, 6, 15, 24, 30, 39, 41, 45, 48, 51, 59, 61, 65, 68, 72, 88]
+      var yCordes = [3, 6, 15, 24, 31, 39, 41, 46, 48, 52, 59, 61, 65, 68, 72, 89]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 2",
+              id:"i2",
+              color:"#d1dae0"
+          })
+      }
+      
+      var xCordes = [12, 18, 21, 28, 36, 40, 75, 77, 96]
+      var yCordes = [13, 18, 21, 28, 36, 40, 75, 78, 96]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 3",
+              id:"i3",
+              color:"#b3c2cb"
+          })
+      }							
+                                  
+      var xCordes = [8, 11, 14, 22, 32, 47, 71]
+      var yCordes = [8, 11, 14, 22, 32, 47, 71]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 4",
+              id:"i4",
+              color:"#95aab7"
+          })
+      }	
+      
+      var xCordes = [5, 7, 16, 20, 23, 25, 37, 49, 56, 58, 62, 74, 86, 90, 93]
+      var yCordes = [5, 7, 16, 20, 23, 25, 37, 49, 56, 58, 62, 74, 86, 90, 94]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 5",
+              id:"i5",
+              color:"#7691a2"
+          })
+      }
+      
+      var xCordes = [42, 54, 63, 69, 81]
+      var yCordes = [42, 54, 63, 69, 81]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 6",
+              id:"i6",
+              color:"#5d7889"
+          })
+      }	
+      
+      var xCordes = [2, 55, 66, 70]
+      var yCordes = [2, 55, 67, 70]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 7",
+              id:"i7",
+              color:"#485d6a"
+          })
+      }
+      
+      var xCordes = [29, 53, 60, 95]
+      var yCordes = [29, 53, 60, 95]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 8",
+              id:"i8",
+              color:"#34434c"
+          })
+      }	
+      
+      var xCordes = [19, 26, 35, 43, 64, 76, 85, 92]
+      var yCordes = [19, 26, 35, 43, 64, 76, 85, 92]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 9",
+              id:"i9",
+              color:"#1f282e"
+          })
+      }
+      
+      var xCordes = [1, 10, 17, 27, 33, 50, 57, 73, 80, 82, 84, 91]
+      var yCordes = [1, 10, 17, 27, 34, 50, 57, 73, 80, 82, 84, 91]
+      
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates0.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"Conservation Level 10",
+              id:"i10",
+              color:"#0a0d0f"
+          })
+      }									
+                                              
+                                  
+      ftx1.addFeature({
+          data: cordinates0,
+          name: "Conservation level",
+          className: "test0", //can be used for styling
+          color: "#0F8292",
+          type: "rect" // ['rect', 'path', 'line']
+      });
+      
+      var dataDemo1 = [];
+      var score1 = [0.82, 0.57, 0.26, 0.2 , 0.47, 0.26, 0.49, 0.41, 0.15, 0.78, 0.41,
+       0.4 , 0.37, 0.44, 0.26, 0.46, 0.98, 0.39, 0.64, 0.45, 0.4 , 0.45,
+       0.46, 0.24, 0.45, 0.69, 0.75, 0.4 , 0.59, 0.27, 0.31, 0.44, 0.82,
+       0.82, 0.64, 0.37, 0.49, 0.14, 0.26, 0.33, 0.27, 0.53, 0.69, 0.17,
+       0.29, 0.27, 0.41, 0.27, 0.51, 0.75, 0.21, 0.3 , 0.62, 0.53, 0.56,
+       0.48, 0.82, 0.46, 0.24, 0.59, 0.31, 0.47, 0.52, 0.64, 0.22, 0.56,
+       0.54, 0.29, 0.51, 0.57, 0.44, 0.22, 0.82, 0.45, 0.36, 0.68, 0.35,
+       0.34, 0.  , 1.  , 0.52, 0.73, 0.18, 0.73, 0.64, 0.48, 0.19, 0.3 ,
+       0.25, 0.5 , 0.81, 0.68, 0.48, 0.45, 0.6 , 0.4]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo1.push({
+              x: i*1,
+              y:score1[i]
+          })
+      }
+      
+      
+      ftx1.addFeature({
+          data:dataDemo1 ,
+          name: "Conservation score",
+          className: "test1",
+          color: "#607c8e",
+          type: "line",
+          filter: "type3",
+          height: "5"
+      });
+      
+      </script>
+      
+      <div id="fv6" class="Cselectt6"></div>
+
+      <script>
+      var ftx6 = new FeatureViewer('MQIITTALVCLLLAGMWPEDVDSKSMQVPFSRCCFSFAEQEIPLRAILCYRNTSSICSNEGLIFKLKRGKEACALDTVGWVQRHRKMLRHCPSKRK',
+      '#fv6', 
+                                     {
+                                      showAxis: true,
+                                      showSequence: true,
+                                      brushActive: true, 
+                                      toolbar:false, 
+                                      bubbleHelp:false, 
+                                      zoomMax:50,
+                                      offset:{start:1,end:sequence.length}								
+                                  });
+      var cordinates5 = [];
+      var xCordes = [0]
+      var yCordes = [0]
+      for (var i=0;i<yCordes.length;i++) {
+          cordinates5.push({
+              x:xCordes[i],
+              y:yCordes[i],
+              description:"DFLPred",
+              id:"cx",
+              color:"#ff9408"
+          })
+      }							
+                                                                                  
+      ftx6.addFeature({
+          data: cordinates5,
+          name: "Linker residues",
+          className: "test7", //can be used for styling
+          color: "#ff9408",
+          type: "rect" // ['rect', 'path', 'line']
+      });
+      
+      var dataDemo5 = [];
+      var score5 = [0.04, 0.05, 0.04, 0.04, 0.04, 0.04, 0.05, 0.04, 0.05, 0.07, 0.06, 0.08, 0.1, 0.1, 0.1, 0.09, 0.1, 0.08, 0.08, 0.09, 0.1, 0.1, 0.11, 0.11, 0.14, 0.14, 0.12, 0.13, 0.12, 0.12, 0.11, 0.1, 0.11, 0.09, 0.12, 0.11, 0.11, 0.1, 0.09, 0.08, 0.07, 0.06, 0.06, 0.08, 0.08, 0.09, 0.1, 0.09, 0.09, 0.1, 0.14, 0.13, 0.17, 0.14, 0.12, 0.13, 0.13, 0.11, 0.11, 0.11, 0.11, 0.09, 0.08, 0.07, 0.09, 0.08, 0.07, 0.07, 0.07, 0.07, 0.08, 0.1, 0.11, 0.13, 0.15, 0.15, 0.16, 0.14, 0.13, 0.12, 0.13, 0.11, 0.12, 0.16, 0.18, 0.16, 0.17, 0.13, 0.12, 0.11, 0.1, 0.08, 0.09, 0.07, 0.08, 0.11]
+      for (var i=0;i<sequence.length;i++) {
+          dataDemo5.push({
+              x: i*1,
+              y:score5[i]
+          })
+      }
+      ftx6.addFeature({
+          data:dataDemo5 ,
+          name: "Linker score",
+          className: "test8",
+          color: "#ff9408",
+          type: "line",
+          filter: "type1",
+          height: "5"
+      });
+      </script>
+      
+      </div>
+      </div>
+      </div>
+      
+  <button id="foo">download img</button>    
+   <script>
+     var node = document.getElementById('fv6');
+     var btn = document.getElementById('foo');
+	 
+	 btn.onclick = function() {
+      domtoimage.toBlob(document.getElementById('fv6'))
+         .then(function(blob){
+      window.saveAs(blob, 'my-node.png');
+    });
+}
+   </script>
+</html>
